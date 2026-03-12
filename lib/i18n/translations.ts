@@ -99,8 +99,6 @@ export const translations = {
       type: 'Tipo',
       incomeType: '↑ Ingreso',
       expenseType: '↓ Gasto',
-      currentMonth: 'Mes actual',
-      last6Months: 'últimos 6 meses',
       descriptionPlaceholder: 'ej: Factura cliente, Hosting, Material...',
       amountPlaceholder: '0.00',
       categoryPlaceholder: 'ej: Ventas, Servicios, Software, Nóminas...',
