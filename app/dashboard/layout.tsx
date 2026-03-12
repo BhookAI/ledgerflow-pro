@@ -74,14 +74,15 @@ export default function DashboardLayout({
               console.error('Auto-provision failed:', setupErr)
             }
             // Fallback final con datos del token de auth
-            setUser((prev: typeof user) => prev ?? {
+            const newUser = {
               id: session.user.id,
               email: session.user.email ?? '',
               full_name: session.user.user_metadata?.full_name ?? session.user.email?.split('@')[0] ?? 'Admin',
               role: session.user.user_metadata?.role ?? 'admin',
               tenant_id: session.user.user_metadata?.tenant_id ?? '',
               avatar_url: session.user.user_metadata?.avatar_url ?? null,
-            })
+            }
+            setUser(newUser)
           }
         } else {
           setUser(null)
