@@ -365,7 +365,7 @@ export function formatCurrency(amount: number, currencyCode?: string): string {
 export function isAllowedFileType(filename: string): boolean {
   const ext = filename.split('.').pop()?.toLowerCase()
   if (!ext) return false
-  return APP_CONFIG.supportedFormats.all.includes(ext)
+  return APP_CONFIG.supportedFormats.all.includes(ext as any)
 }
 
 // ============================================
