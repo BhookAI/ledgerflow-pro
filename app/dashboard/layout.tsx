@@ -49,6 +49,7 @@ export default function DashboardLayout({
           } else {
             // Si no hay perfil en public.users, auto-provisionar tenant
             console.warn('Profile not found in public.users, auto-provisioning tenant...')
+            let resolved = false
             try {
               const setupRes = await fetch('/api/auth/setup-tenant', { method: 'POST' })
               if (setupRes.ok) {
@@ -66,23 +67,25 @@ export default function DashboardLayout({
                     full_name: newProfile.full_name,
                     role: newProfile.role,
                     tenant_id: newProfile.tenant_id,
-                    avatar_url: newProfile.avatar_url,
+                    avatar_url: newProfile.avatar_url ?? undefined,
                   })
+                  resolved = true
                 }
               }
             } catch (setupErr) {
               console.error('Auto-provision failed:', setupErr)
             }
             // Fallback final con datos del token de auth
-            const newUser = {
-              id: session.user.id,
-              email: session.user.email ?? '',
-              full_name: session.user.user_metadata?.full_name ?? session.user.email?.split('@')[0] ?? 'Admin',
-              role: session.user.user_metadata?.role ?? 'admin',
-              tenant_id: session.user.user_metadata?.tenant_id ?? '',
-              avatar_url: session.user.user_metadata?.avatar_url ?? null,
+            if (!resolved) {
+              setUser({
+                id: session.user.id,
+                email: session.user.email ?? '',
+                full_name: session.user.user_metadata?.full_name ?? session.user.email?.split('@')[0] ?? 'Admin',
+                role: session.user.user_metadata?.role ?? 'admin',
+                tenant_id: session.user.user_metadata?.tenant_id ?? '',
+                avatar_url: session.user.user_metadata?.avatar_url ?? undefined,
+              })
             }
-            setUser(newUser)
           }
         } else {
           setUser(null)
@@ -126,7 +129,7 @@ export default function DashboardLayout({
               full_name: session.user.user_metadata?.full_name ?? session.user.email?.split('@')[0] ?? 'Admin',
               role: session.user.user_metadata?.role ?? 'admin',
               tenant_id: session.user.user_metadata?.tenant_id ?? '',
-              avatar_url: session.user.user_metadata?.avatar_url ?? null,
+              avatar_url: session.user.user_metadata?.avatar_url ?? undefined,
             })
           }
         } else if (event === 'SIGNED_OUT') {
