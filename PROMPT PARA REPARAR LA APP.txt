@@ -1,0 +1,135 @@
+INFORME DETALLADO DE ERORES PARA ARREGLAR (COPIADOS A POWERSHELL) 
+
+el primero es que cuando se intenta crear un proyecto falla y no deja crear nada $session = New-Object Microsoft.PowerShell.Commands.WebRequestSession
+$session.UserAgent = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36"
+$session.Cookies.Add((New-Object System.Net.Cookie("sb-esouimxqetamqbolaaie-auth-token", "%5B%22eyJhbGciOiJFUzI1NiIsImtpZCI6ImY5ZTI4OGEyLTY1ODctNGE5NS1iZGVhLTIyYWEwMTU2NDI0NyIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL2Vzb3VpbXhxZXRhbXFib2xhYWllLnN1cGFiYXNlLmNvL2F1dGgvdjEiLCJzdWIiOiJkZjZjYTBiNS1hNDBiLTQ3NjctOGJlZi05YzZlOGE3ODc4N2IiLCJhdWQiOiJhdXRoZW50aWNhdGVkIiwiZXhwIjoxNzcyNzE3MDAwLCJpYXQiOjE3NzI3MTM0MDAsImVtYWlsIjoieW9lbnF1ZWNvQGdtYWlsLmNvbSIsInBob25lIjoiIiwiYXBwX21ldGFkYXRhIjp7InByb3ZpZGVyIjoiZW1haWwiLCJwcm92aWRlcnMiOlsiZW1haWwiXX0sInVzZXJfbWV0YWRhdGEiOnsiZW1haWxfdmVyaWZpZWQiOnRydWV9LCJyb2xlIjoiYXV0aGVudGljYXRlZCIsImFhbCI6ImFhbDEiLCJhbXIiOlt7Im1ldGhvZCI6InBhc3N3b3JkIiwidGltZXN0YW1wIjoxNzcyNzEzNDAwfV0sInNlc3Npb25faWQiOiJiOWM4OWVmYi1iMmJkLTQyODItYjQ3My0xNjJhMmQ3N2FiNTYiLCJpc19hbm9ueW1vdXMiOmZhbHNlfQ.Ym_AKBuUafujQYX5bxJnAApj22wMptT6HdUKpHEGcv-ea2EhqdksZ0sN7LTQkQIkmvf0fYI4dF_PFwKcMKdCPw%22%2C%22qwmghvfchriy%22%2Cnull%2Cnull%2Cnull%5D", "/", "localhost")))
+$session.Cookies.Add((New-Object System.Net.Cookie("sb-localhost-auth-token", "%5B%22eyJhbGciOiJFUzI1NiIsImtpZCI6ImI4MTI2OWYxLTIxZDgtNGYyZS1iNzE5LWMyMjQwYTg0MGQ5MCIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjU0MzIxL2F1dGgvdjEiLCJzdWIiOiIyYWYwNDIwYS04MjljLTQ3YmEtYjllNy0xYmVjN2U4MmM5OTQiLCJhdWQiOiJhdXRoZW50aWNhdGVkIiwiZXhwIjoxNzczMjY1ODU2LCJpYXQiOjE3NzMyNjIyNTYsImVtYWlsIjoieW9lbnF1ZWNvQGdtYWlsLmNvbSIsInBob25lIjoiIiwiYXBwX21ldGFkYXRhIjp7InByb3ZpZGVyIjoiZW1haWwiLCJwcm92aWRlcnMiOlsiZW1haWwiXX0sInVzZXJfbWV0YWRhdGEiOnsiZW1haWwiOiJ5b2VucXVlY29AZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImZ1bGxfbmFtZSI6IkF4ZWwgQWRtaW4iLCJwaG9uZV92ZXJpZmllZCI6ZmFsc2UsInN1YiI6IjJhZjA0MjBhLTgyOWMtNDdiYS1iOWU3LTFiZWM3ZTgyYzk5NCJ9LCJyb2xlIjoiYXV0aGVudGljYXRlZCIsImFhbCI6ImFhbDEiLCJhbXIiOlt7Im1ldGhvZCI6InBhc3N3b3JkIiwidGltZXN0YW1wIjoxNzczMjYyMjU2fV0sInNlc3Npb25faWQiOiJiNzU3ZGI5Ny0zZDY1LTQ1ODYtYjI4My1iMjcxZWIwMzBjNWIiLCJpc19hbm9ueW1vdXMiOmZhbHNlfQ.j_PlsE4bgB8QAKY8ZINLg1NtBoBLq5Dw-mVn4mp2-v1NGaKhg657_3xyzbG-youoiR2-7gB-jFcA4qIYifuL7Q%22%2C%22czfcyhbfvrfz%22%2Cnull%2Cnull%2Cnull%5D", "/", "localhost")))
+Invoke-WebRequest -UseBasicParsing -Uri "http://localhost:3000/api/projects" `
+-Method "POST" `
+-WebSession $session `
+-Headers @{
+"Accept"="*/*"
+  "Accept-Encoding"="gzip, deflate, br, zstd"
+  "Accept-Language"="es-ES,es;q=0.9"
+  "Origin"="http://localhost:3000"
+  "Referer"="http://localhost:3000/dashboard/projects"
+  "Sec-Fetch-Dest"="empty"
+  "Sec-Fetch-Mode"="cors"
+  "Sec-Fetch-Site"="same-origin"
+  "sec-ch-ua"="`"Not:A-Brand`";v=`"99`", `"Google Chrome`";v=`"145`", `"Chromium`";v=`"145`""
+  "sec-ch-ua-mobile"="?0"
+  "sec-ch-ua-platform"="`"Linux`""
+} `
+-ContentType "application/json" `
+-Body "{`"title`":`"proyecto de testeo`",`"description`":`"Testing the API`",`"budget`":5000,`"priority`":`"critical`",`"access_code`":`"PROYECTO-2026-ZDX530`"}"
+
+en kanban al intentar tocar los 3 puntos para gestionar los proyectos tampoco funciona el boton para nada 
+
+el boton de filtros tampoco funciona
+$session = New-Object Microsoft.PowerShell.Commands.WebRequestSession
+$session.UserAgent = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36"
+$session.Cookies.Add((New-Object System.Net.Cookie("sb-esouimxqetamqbolaaie-auth-token", "%5B%22eyJhbGciOiJFUzI1NiIsImtpZCI6ImY5ZTI4OGEyLTY1ODctNGE5NS1iZGVhLTIyYWEwMTU2NDI0NyIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL2Vzb3VpbXhxZXRhbXFib2xhYWllLnN1cGFiYXNlLmNvL2F1dGgvdjEiLCJzdWIiOiJkZjZjYTBiNS1hNDBiLTQ3NjctOGJlZi05YzZlOGE3ODc4N2IiLCJhdWQiOiJhdXRoZW50aWNhdGVkIiwiZXhwIjoxNzcyNzE3MDAwLCJpYXQiOjE3NzI3MTM0MDAsImVtYWlsIjoieW9lbnF1ZWNvQGdtYWlsLmNvbSIsInBob25lIjoiIiwiYXBwX21ldGFkYXRhIjp7InByb3ZpZGVyIjoiZW1haWwiLCJwcm92aWRlcnMiOlsiZW1haWwiXX0sInVzZXJfbWV0YWRhdGEiOnsiZW1haWxfdmVyaWZpZWQiOnRydWV9LCJyb2xlIjoiYXV0aGVudGljYXRlZCIsImFhbCI6ImFhbDEiLCJhbXIiOlt7Im1ldGhvZCI6InBhc3N3b3JkIiwidGltZXN0YW1wIjoxNzcyNzEzNDAwfV0sInNlc3Npb25faWQiOiJiOWM4OWVmYi1iMmJkLTQyODItYjQ3My0xNjJhMmQ3N2FiNTYiLCJpc19hbm9ueW1vdXMiOmZhbHNlfQ.Ym_AKBuUafujQYX5bxJnAApj22wMptT6HdUKpHEGcv-ea2EhqdksZ0sN7LTQkQIkmvf0fYI4dF_PFwKcMKdCPw%22%2C%22qwmghvfchriy%22%2Cnull%2Cnull%2Cnull%5D", "/", "localhost")))
+$session.Cookies.Add((New-Object System.Net.Cookie("sb-localhost-auth-token", "%5B%22eyJhbGciOiJFUzI1NiIsImtpZCI6ImI4MTI2OWYxLTIxZDgtNGYyZS1iNzE5LWMyMjQwYTg0MGQ5MCIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjU0MzIxL2F1dGgvdjEiLCJzdWIiOiIyYWYwNDIwYS04MjljLTQ3YmEtYjllNy0xYmVjN2U4MmM5OTQiLCJhdWQiOiJhdXRoZW50aWNhdGVkIiwiZXhwIjoxNzczMjY1ODU2LCJpYXQiOjE3NzMyNjIyNTYsImVtYWlsIjoieW9lbnF1ZWNvQGdtYWlsLmNvbSIsInBob25lIjoiIiwiYXBwX21ldGFkYXRhIjp7InByb3ZpZGVyIjoiZW1haWwiLCJwcm92aWRlcnMiOlsiZW1haWwiXX0sInVzZXJfbWV0YWRhdGEiOnsiZW1haWwiOiJ5b2VucXVlY29AZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImZ1bGxfbmFtZSI6IkF4ZWwgQWRtaW4iLCJwaG9uZV92ZXJpZmllZCI6ZmFsc2UsInN1YiI6IjJhZjA0MjBhLTgyOWMtNDdiYS1iOWU3LTFiZWM3ZTgyYzk5NCJ9LCJyb2xlIjoiYXV0aGVudGljYXRlZCIsImFhbCI6ImFhbDEiLCJhbXIiOlt7Im1ldGhvZCI6InBhc3N3b3JkIiwidGltZXN0YW1wIjoxNzczMjYyMjU2fV0sInNlc3Npb25faWQiOiJiNzU3ZGI5Ny0zZDY1LTQ1ODYtYjI4My1iMjcxZWIwMzBjNWIiLCJpc19hbm9ueW1vdXMiOmZhbHNlfQ.j_PlsE4bgB8QAKY8ZINLg1NtBoBLq5Dw-mVn4mp2-v1NGaKhg657_3xyzbG-youoiR2-7gB-jFcA4qIYifuL7Q%22%2C%22czfcyhbfvrfz%22%2Cnull%2Cnull%2Cnull%5D", "/", "localhost")))
+Invoke-WebRequest -UseBasicParsing -Uri "http://localhost:3000/api/clients" `
+-Method "POST" `
+-WebSession $session `
+-Headers @{
+"Accept"="*/*"
+  "Accept-Encoding"="gzip, deflate, br, zstd"
+  "Accept-Language"="es-ES,es;q=0.9"
+  "Origin"="http://localhost:3000"
+  "Referer"="http://localhost:3000/dashboard/clients"
+  "Sec-Fetch-Dest"="empty"
+  "Sec-Fetch-Mode"="cors"
+  "Sec-Fetch-Site"="same-origin"
+  "sec-ch-ua"="`"Not:A-Brand`";v=`"99`", `"Google Chrome`";v=`"145`", `"Chromium`";v=`"145`""
+  "sec-ch-ua-mobile"="?0"
+  "sec-ch-ua-platform"="`"Linux`""
+} `
+-ContentType "application/json" `
+-Body "{`"full_name`":`"test1`",`"email`":`"testeocliente@ejemplo.com`",`"phone`":`"+84 888 555 1001`",`"company_name`":`"empresa ejemplo etc`"}"
+
+en pipeline ventas los botones de gestion (3 puntos, no funciona ninguno) y muestra informacion fantasma 
+
+en contratos y aprobaciones hay un boton llamado nuevo contrato que no funciona y no deja crear ni agregar nada 
+
+en portal del cliente no funciona el boton de enviar pdf y no funciona como lo estimado, la pagina no muestra la suficiente informacion y muestra informacion fantasma 
+
+en la seccion de documentos no deja subir archivos $session = New-Object Microsoft.PowerShell.Commands.WebRequestSession
+$session.UserAgent = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36"
+$session.Cookies.Add((New-Object System.Net.Cookie("sb-esouimxqetamqbolaaie-auth-token", "%5B%22eyJhbGciOiJFUzI1NiIsImtpZCI6ImY5ZTI4OGEyLTY1ODctNGE5NS1iZGVhLTIyYWEwMTU2NDI0NyIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL2Vzb3VpbXhxZXRhbXFib2xhYWllLnN1cGFiYXNlLmNvL2F1dGgvdjEiLCJzdWIiOiJkZjZjYTBiNS1hNDBiLTQ3NjctOGJlZi05YzZlOGE3ODc4N2IiLCJhdWQiOiJhdXRoZW50aWNhdGVkIiwiZXhwIjoxNzcyNzE3MDAwLCJpYXQiOjE3NzI3MTM0MDAsImVtYWlsIjoieW9lbnF1ZWNvQGdtYWlsLmNvbSIsInBob25lIjoiIiwiYXBwX21ldGFkYXRhIjp7InByb3ZpZGVyIjoiZW1haWwiLCJwcm92aWRlcnMiOlsiZW1haWwiXX0sInVzZXJfbWV0YWRhdGEiOnsiZW1haWxfdmVyaWZpZWQiOnRydWV9LCJyb2xlIjoiYXV0aGVudGljYXRlZCIsImFhbCI6ImFhbDEiLCJhbXIiOlt7Im1ldGhvZCI6InBhc3N3b3JkIiwidGltZXN0YW1wIjoxNzcyNzEzNDAwfV0sInNlc3Npb25faWQiOiJiOWM4OWVmYi1iMmJkLTQyODItYjQ3My0xNjJhMmQ3N2FiNTYiLCJpc19hbm9ueW1vdXMiOmZhbHNlfQ.Ym_AKBuUafujQYX5bxJnAApj22wMptT6HdUKpHEGcv-ea2EhqdksZ0sN7LTQkQIkmvf0fYI4dF_PFwKcMKdCPw%22%2C%22qwmghvfchriy%22%2Cnull%2Cnull%2Cnull%5D", "/", "localhost")))
+$session.Cookies.Add((New-Object System.Net.Cookie("sb-localhost-auth-token", "%5B%22eyJhbGciOiJFUzI1NiIsImtpZCI6ImI4MTI2OWYxLTIxZDgtNGYyZS1iNzE5LWMyMjQwYTg0MGQ5MCIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjU0MzIxL2F1dGgvdjEiLCJzdWIiOiIyYWYwNDIwYS04MjljLTQ3YmEtYjllNy0xYmVjN2U4MmM5OTQiLCJhdWQiOiJhdXRoZW50aWNhdGVkIiwiZXhwIjoxNzczMjY1ODU2LCJpYXQiOjE3NzMyNjIyNTYsImVtYWlsIjoieW9lbnF1ZWNvQGdtYWlsLmNvbSIsInBob25lIjoiIiwiYXBwX21ldGFkYXRhIjp7InByb3ZpZGVyIjoiZW1haWwiLCJwcm92aWRlcnMiOlsiZW1haWwiXX0sInVzZXJfbWV0YWRhdGEiOnsiZW1haWwiOiJ5b2VucXVlY29AZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImZ1bGxfbmFtZSI6IkF4ZWwgQWRtaW4iLCJwaG9uZV92ZXJpZmllZCI6ZmFsc2UsInN1YiI6IjJhZjA0MjBhLTgyOWMtNDdiYS1iOWU3LTFiZWM3ZTgyYzk5NCJ9LCJyb2xlIjoiYXV0aGVudGljYXRlZCIsImFhbCI6ImFhbDEiLCJhbXIiOlt7Im1ldGhvZCI6InBhc3N3b3JkIiwidGltZXN0YW1wIjoxNzczMjYyMjU2fV0sInNlc3Npb25faWQiOiJiNzU3ZGI5Ny0zZDY1LTQ1ODYtYjI4My1iMjcxZWIwMzBjNWIiLCJpc19hbm9ueW1vdXMiOmZhbHNlfQ.j_PlsE4bgB8QAKY8ZINLg1NtBoBLq5Dw-mVn4mp2-v1NGaKhg657_3xyzbG-youoiR2-7gB-jFcA4qIYifuL7Q%22%2C%22czfcyhbfvrfz%22%2Cnull%2Cnull%2Cnull%5D", "/", "localhost")))
+Invoke-WebRequest -UseBasicParsing -Uri "http://localhost:3000/api/documents/upload" `
+-Method "POST" `
+-WebSession $session `
+-Headers @{
+"Accept"="*/*"
+  "Accept-Encoding"="gzip, deflate, br, zstd"
+  "Accept-Language"="es-ES,es;q=0.9"
+  "Origin"="http://localhost:3000"
+  "Referer"="http://localhost:3000/dashboard/documents"
+  "Sec-Fetch-Dest"="empty"
+  "Sec-Fetch-Mode"="cors"
+  "Sec-Fetch-Site"="same-origin"
+  "sec-ch-ua"="`"Not:A-Brand`";v=`"99`", `"Google Chrome`";v=`"145`", `"Chromium`";v=`"145`""
+  "sec-ch-ua-mobile"="?0"
+  "sec-ch-ua-platform"="`"Linux`""
+} `
+-ContentType "multipart/form-data; boundary=----WebKitFormBoundaryrGL4fN5GgVVN5iDu" `
+-Body ([System.Text.Encoding]::UTF8.GetBytes("------WebKitFormBoundaryrGL4fN5GgVVN5iDu$([char]13)$([char]10)Content-Disposition: form-data; name=`"file`"; filename=`"Lorem ipsum.pdf`"$([char]13)$([char]10)Content-Type: application/pdf$([char]13)$([char]10)$([char]13)$([char]10)$([char]13)$([char]10)------WebKitFormBoundaryrGL4fN5GgVVN5iDu--$([char]13)$([char]10)"))
+
+y el boton de filtros tampoco funciona y necesito que aqui se muestre mas informacion 
+
+la pagina de finanzas directamente no compila y no funciona nada JAJAJAJAJ Build Error
+Failed to compile
+
+Next.js (14.2.35) is outdated (learn more)
+./app/dashboard/finances/page.tsx
+Error: 
+  × the name `PieChart` is defined multiple times
+    ╭─[/home/hael/LedgerFlowPro/app/dashboard/finances/page.tsx:1:1]
+  1 │ 'use client'
+  2 │ 
+  3 │ import { useState, useEffect, useCallback } from 'react'
+  4 │ import { TrendingUp, TrendingDown, Plus, Download, Filter, X, Calendar, DollarSign, Tag, FileText, Search, ArrowUpDown, Eye, Edit, Trash2, Upload, Mail, CheckCircle2, Clock, PieChart, ShieldCheck, Calculator, Wallet, ArrowRightLeft } from 'lucide-react'
+    ·                                                                                                                                                                               ────┬───
+    ·                                                                                                                                                                                   ╰── previous definition of `PieChart` here
+  5 │ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+  6 │ import { Button } from '@/components/ui/button'
+  7 │ import { Input } from '@/components/ui/input'
+  8 │ import { Badge } from '@/components/ui/badge'
+  9 │ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+ 10 │ import {
+ 11 │   Dialog,
+ 12 │   DialogContent,
+ 13 │   DialogDescription,
+ 14 │   DialogFooter,
+ 15 │   DialogHeader,
+ 16 │   DialogTitle,
+ 17 │ } from '@/components/ui/dialog'
+ 18 │ import {
+ 19 │   BarChart,
+ 20 │   Bar,
+ 21 │   XAxis,
+ 22 │   YAxis,
+ 23 │   CartesianGrid,
+ 24 │   Tooltip,
+ 25 │   ResponsiveContainer,
+ 26 │   PieChart,
+    ·   ────┬───
+    ·       ╰── `PieChart` redefined here
+ 27 │   Pie,
+ 28 │   Cell,
+ 29 │   Legend,
+    ╰────
+
+y bueno, no me deja probar nada mas porque la parte de finanzas rompio toda la app, podrias arreglar todos estos errores y probar el resto de la app? credenciales: Yoenqueco@gmail.com Pajarraco7488
+el gant dinamico no deja agregar fechas ni hacer nada KJDSJKDJKA es una basura, no muestra fechas ni nada relacionado 
+
+el boton de anadir cotizaciones no funciona y tampoco deja agregar proveedores y hay informacion fantasma por toda la app (puede confundir al cliente) 
+
+en inventario y sobrantes no hay las suficientes y funciones y informacion y no deja hacer nada y muestra informacion fantasma 
+
+en alertas de precio muestra precios random que no coinciden con nada de la realidad (necesita mostrar informacion de precios reales consultados a internet) 
+
+el boton de de nuevo cliente funciona pero la funcion no deja poner nuevos clientes 
